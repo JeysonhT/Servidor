@@ -2,6 +2,7 @@ package com.servidor.servidor.Dao;
 
 import java.util.List;
 
+import jakarta.persistence.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,6 +32,11 @@ public class UserDaoImp implements UserDao{
     @Override
     public void registrar(Usuario usuario) {
        entityManager.merge(usuario);
+    }
+    @Override
+    public int getId(int Id){
+        String query = "SELECT u.Id_User FROM Usuario u where u.Id_User =:iduser ";
+        return entityManager.createQuery(query, Usuario.class).setParameter("iduser", Id).getFirstResult();
     }
     
 }

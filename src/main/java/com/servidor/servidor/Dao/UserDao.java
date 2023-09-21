@@ -12,4 +12,6 @@ public interface UserDao {
 
     void registrar(Usuario usuario);
 
+    int getId(int id);
+
 }
