@@ -4,10 +4,7 @@ import com.servidor.servidor.Models.Negocio;
 import com.servidor.servidor.Models.Servicios;
 import com.servidor.servidor.Models.Usuario;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceContext;
-import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,15 +30,15 @@ public class ServicioDaoImp implements ServicioDao{
     }
 
     @Override
-    public ResponseEntity<String> GuardarServicio(String Nombre_serv, int id_User, int Id_negocio) {
-        Usuario idusr = entityManager.find(Usuario.class, id_User);
+    public ResponseEntity<String> GuardarServicio(String Nombre_serv, int Id_User, int Id_negocio, String Fecha, String Descripcion, Float costo) {
+        Usuario idusr = entityManager.find(Usuario.class, Id_User);
         Negocio idNegocio = entityManager.find(Negocio.class, Id_negocio);
         if(idusr!=null && idNegocio!=null){
-            Servicios servicios = new Servicios(Nombre_serv, idusr, idNegocio);
+            Servicios servicios = new Servicios(Nombre_serv, Fecha, Descripcion, costo);
             entityManager.merge(servicios);
         }else{
             return ResponseEntity.badRequest().body("los ids no coinciden en la base de datos");
         }
-        return ResponseEntity.ok("La solicitud fue ejecutada correctamente");
+        return ResponseEntity.ok("Solicitud Ejecutada");
     }
 }

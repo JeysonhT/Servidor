@@ -11,11 +11,6 @@ import com.servidor.servidor.Models.Usuario;
 
 @RestController
 public class UserController {
-    @RequestMapping(value = "User")
-    public String User(){
-        return "bienvenido";
-    }
-
     @Autowired
     private UserDao userDao;
 

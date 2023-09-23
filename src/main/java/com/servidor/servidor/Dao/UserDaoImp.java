@@ -38,5 +38,11 @@ public class UserDaoImp implements UserDao{
         String query = "SELECT u.Id_User FROM Usuario u where u.Id_User =:iduser ";
         return entityManager.createQuery(query, Usuario.class).setParameter("iduser", Id).getFirstResult();
     }
-    
+
+    @Override
+    public void verificarUsuario(Usuario usuario) {
+
+    }
+
+
 }

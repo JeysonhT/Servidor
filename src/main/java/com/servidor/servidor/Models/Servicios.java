@@ -16,22 +16,22 @@ public class Servicios {
     @Getter @Setter @Column(name = "nombre_Serv")
     private String Nombre_Serv;
 
-    @ManyToOne
-    @JoinColumn(name = "Id_user", referencedColumnName = "Id_User")
-    @Getter @Setter
-    private Usuario usuario;
+    @Getter @Setter @Column(name = "Fecha")//nuevas
+    private String Fecha;
 
-    @ManyToOne
-    @JoinColumn(name = "Id_Negocio", referencedColumnName = "Id_Negocio")
-    @Getter @Setter
-    private Negocio negocio;
+    @Getter @Setter @Column(name = "Descripcion")
+    private String Descripcion;
+
+    @Getter @Setter @Column(name = "Costo")
+    private float Costo;
 
     public Servicios() {
     }
 
-    public Servicios(String nombre_Serv, Usuario usuario, Negocio negocio) {
+    public Servicios(String nombre_Serv, String fecha, String descripcion, float costo) {
         Nombre_Serv = nombre_Serv;
-        this.usuario = usuario;
-        this.negocio = negocio;
+        Fecha = fecha;
+        Descripcion = descripcion;
+        Costo = costo;
     }
 }

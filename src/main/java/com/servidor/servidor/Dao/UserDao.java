@@ -14,4 +14,6 @@ public interface UserDao {
 
     int getId(int id);
 
+    void verificarUsuario(Usuario usuario);
+
 }
