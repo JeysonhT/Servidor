@@ -1,6 +1,6 @@
 package com.servidor.servidor.controllers;
 
-import com.servidor.servidor.Dao.ServicioDao;
+import com.servidor.servidor.Dao.Interfaces.ServicioDao;
 import com.servidor.servidor.Models.Servicios;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

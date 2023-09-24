@@ -1,12 +1,15 @@
 package com.servidor.servidor.controllers;
 
-import java.net.http.HttpResponse;
 import java.util.List;
+
+import com.servidor.servidor.Utils.JWTUtil;
+import de.mkammerer.argon2.Argon2;
+import de.mkammerer.argon2.Argon2Factory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.servidor.servidor.Dao.UserDao;
+import com.servidor.servidor.Dao.Interfaces.UserDao;
 import com.servidor.servidor.Models.Usuario;
 
 @RestController
@@ -14,18 +17,39 @@ public class UserController {
     @Autowired
     private UserDao userDao;
 
+    @Autowired
+    private JWTUtil jwtUtil;
+
     @RequestMapping(value = "api/Usuarios")
-    public List<Usuario> getUsuarios(){
+    public List<Usuario> getUsuarios((@RequestHeader(value="Authorization") String token){
+        if (!validarToken(token)) {
+            return null;
+        }
         return userDao.getUsuarios();
     }
 
+    private boolean validarToken(String token) {
+        String usuarioId = jwtUtil.getKey(token);
+        return usuarioId != null;
+    }
+
     @RequestMapping(value = "api/Usuarios/{Id}", method = RequestMethod.DELETE)
-    public void DeleteUsuario(@PathVariable int Id){
+    public void DeleteUsuario(@RequestHeader(value="Authorization") String token,@PathVariable int Id){
+
+        if (!validarToken(token)) {
+            return;
+        }
+
         userDao.Eliminar(Id);
     }
 
     @RequestMapping(value = "api/Usuarios", method = RequestMethod.POST)
     public ResponseEntity<String> registrarUsuario(@RequestBody Usuario usuario){
+        Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+        String hash = argon2.hash(1, 1024, 1, usuario.getPassword());
+
+        usuario.setPassword(hash);
+
         userDao.registrar(usuario);
         return ResponseEntity.ok("solicitud procesada Correctamente");
     }

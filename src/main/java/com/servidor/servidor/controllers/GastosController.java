@@ -1,6 +1,6 @@
 package com.servidor.servidor.controllers;
 
-import com.servidor.servidor.Dao.GastosDao;
+import com.servidor.servidor.Dao.Interfaces.GastosDao;
 import com.servidor.servidor.Models.Gastos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

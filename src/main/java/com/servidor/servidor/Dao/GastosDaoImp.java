@@ -1,5 +1,6 @@
 package com.servidor.servidor.Dao;
 
+import com.servidor.servidor.Dao.Interfaces.GastosDao;
 import com.servidor.servidor.Models.Gastos;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class GastosDaoImp implements GastosDao{
+public class GastosDaoImp implements GastosDao {
     @Autowired
     private EntityManager entityManager;
 

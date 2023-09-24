@@ -1,6 +1,6 @@
 package com.servidor.servidor.controllers;
 
-import com.servidor.servidor.Dao.AutomovilDao;
+import com.servidor.servidor.Dao.Interfaces.AutomovilDao;
 import com.servidor.servidor.Models.Automovil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

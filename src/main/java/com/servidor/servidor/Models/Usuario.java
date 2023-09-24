@@ -29,6 +29,8 @@ public class Usuario {
     private String Email;
     @Getter @Setter @Column(name = "Num_celular")
     private int Num_celular;
+    @Getter @Setter @Column(name = "Password")
+    private String Password;
     
     public Usuario() {
     }

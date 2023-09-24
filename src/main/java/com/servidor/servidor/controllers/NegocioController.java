@@ -1,6 +1,6 @@
 package com.servidor.servidor.controllers;
 
-import com.servidor.servidor.Dao.NegocioDao;
+import com.servidor.servidor.Dao.Interfaces.NegocioDao;
 import com.servidor.servidor.Models.Negocio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

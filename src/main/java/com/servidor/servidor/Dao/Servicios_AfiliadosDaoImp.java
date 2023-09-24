@@ -1,5 +1,6 @@
 package com.servidor.servidor.Dao;
 
+import com.servidor.servidor.Dao.Interfaces.Servicios_AfiliadosDao;
 import com.servidor.servidor.Models.Servicios_Afiliados;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class Servicios_AfiliadosDaoImp implements Servicios_AfiliadosDao{
+public class Servicios_AfiliadosDaoImp implements Servicios_AfiliadosDao {
 
     @Autowired
     private EntityManager entityManager;

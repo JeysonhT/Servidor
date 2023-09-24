@@ -1,5 +1,6 @@
 package com.servidor.servidor.Dao;
 
+import com.servidor.servidor.Dao.Interfaces.AutomovilDao;
 import com.servidor.servidor.Models.Automovil;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class AutomovilDaoImp implements AutomovilDao{
+public class AutomovilDaoImp implements AutomovilDao {
 
     @Autowired
     private EntityManager entityManager;

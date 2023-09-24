@@ -1,4 +1,4 @@
-package com.servidor.servidor.Dao;
+package com.servidor.servidor.Dao.Interfaces;
 
 import com.servidor.servidor.Models.Usuario_Servicio;
 import org.springframework.http.ResponseEntity;

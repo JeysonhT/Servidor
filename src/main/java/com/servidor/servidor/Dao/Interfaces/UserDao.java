@@ -1,4 +1,4 @@
-package com.servidor.servidor.Dao;
+package com.servidor.servidor.Dao.Interfaces;
 
 import java.util.List;
 
@@ -14,6 +14,6 @@ public interface UserDao {
 
     int getId(int id);
 
-    void verificarUsuario(Usuario usuario);
+    Usuario verificarUsuario(Usuario usuario);
 
 }

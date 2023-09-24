@@ -1,5 +1,6 @@
 package com.servidor.servidor.Dao;
 
+import com.servidor.servidor.Dao.Interfaces.NegocioDao;
 import com.servidor.servidor.Models.Negocio;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class NegocioDaoImp implements NegocioDao{
+public class NegocioDaoImp implements NegocioDao {
     @PersistenceContext
     EntityManager entityManager;
 

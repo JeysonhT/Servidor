@@ -1,5 +1,6 @@
 package com.servidor.servidor.Dao;
 
+import com.servidor.servidor.Dao.Interfaces.Usuario_ServicioDao;
 import com.servidor.servidor.Models.Usuario_Servicio;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Repository
 @Transactional
-public class Usuario_ServicioDaoImp implements Usuario_ServicioDao{
+public class Usuario_ServicioDaoImp implements Usuario_ServicioDao {
     @Autowired
     private EntityManager entityManager;
 

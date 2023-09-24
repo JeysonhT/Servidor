@@ -18,7 +18,7 @@ public class Gastos {
     @Getter @Setter @Column(name = "Monto")
     private float Monto;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "Id_Auto", referencedColumnName = "Id_Auto")
     @Getter @Setter
     private Automovil automovil;
