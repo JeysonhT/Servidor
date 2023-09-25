@@ -31,15 +31,9 @@ public class ServicioDaoImp implements ServicioDao {
     }
 
     @Override
-    public ResponseEntity<String> GuardarServicio(String Nombre_serv, int Id_User, int Id_negocio, String Fecha, String Descripcion, Float costo) {
-        Usuario idusr = entityManager.find(Usuario.class, Id_User);
-        Negocio idNegocio = entityManager.find(Negocio.class, Id_negocio);
-        if(idusr!=null && idNegocio!=null){
-            Servicios servicios = new Servicios(Nombre_serv, Fecha, Descripcion, costo);
-            entityManager.merge(servicios);
-        }else{
-            return ResponseEntity.badRequest().body("los ids no coinciden en la base de datos");
-        }
+    public ResponseEntity<String> GuardarServicio(String Nombre_serv, String Fecha, String Descripcion, Float costo) {
+        Servicios servicios = new Servicios(Nombre_serv, Fecha, Descripcion, costo);
+        entityManager.merge(servicios);
         return ResponseEntity.ok("Solicitud Ejecutada");
     }
 }

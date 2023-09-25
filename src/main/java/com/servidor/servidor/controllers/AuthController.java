@@ -4,7 +4,6 @@ import com.servidor.servidor.Dao.Interfaces.UserDao;
 import com.servidor.servidor.Models.Usuario;
 import com.servidor.servidor.Utils.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

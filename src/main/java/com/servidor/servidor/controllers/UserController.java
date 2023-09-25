@@ -21,7 +21,7 @@ public class UserController {
     private JWTUtil jwtUtil;
 
     @RequestMapping(value = "api/Usuarios")
-    public List<Usuario> getUsuarios((@RequestHeader(value="Authorization") String token){
+    public List<Usuario> getUsuarios(@RequestHeader(value="Authorization") String token){
         if (!validarToken(token)) {
             return null;
         }

@@ -26,6 +26,8 @@ public class Negocio {
     private String Email_negocio;
     @Getter @Setter @Column(name= "Ubicacion")
     private String Ubicacion;
+    @Getter @Setter @Column(name = "Password")
+    private String Password;
 
     public Negocio() {
     }
