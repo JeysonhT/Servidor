@@ -10,4 +10,6 @@ public interface NegocioDao {
     void Eliminar(int Id);
 
     void registrar(Negocio negocio);
+
+    Negocio verificarNegocio(Negocio negocio);
 }
