@@ -28,8 +28,12 @@ public class NegocioController {
     }
 
     @RequestMapping(value = "api/Negocio/{Id}", method = RequestMethod.DELETE)
-    public void EliminarNegocio(@PathVariable int Id){
+    public ResponseEntity<String> EliminarNegocio(@PathVariable int Id, @RequestHeader(value = "Authorization" )String token){
+        if(!validarToken(token)){
+            return null;
+        }
         negocioDao.Eliminar(Id);
+        return ResponseEntity.ok("Usuario eliminado correctamente");
     }
 
     @RequestMapping(value = "api/Negocio", method = RequestMethod.POST)
@@ -44,7 +48,7 @@ public class NegocioController {
     }
 
     private boolean validarToken(String token) {
-        String usuarioId = jwtUtil.getKey(token);
-        return usuarioId != null;
+        String NegocioId = jwtUtil.getKey(token);
+        return NegocioId != null;
     }
 }
