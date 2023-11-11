@@ -21,7 +21,7 @@ public class NegocioDaoImp implements NegocioDao {
     @Transactional
     public List<Negocio> getNegocios() {
         String query = "FROM Negocio";
-        return entityManager.createQuery(query).getResultList();
+        return entityManager.createQuery(query, Negocio.class).getResultList();
     }
 
     @Override
@@ -37,8 +37,8 @@ public class NegocioDaoImp implements NegocioDao {
 
     @Override
     public Negocio verificarNegocio(Negocio negocio) {
-        String query = "FROM Negocio WHERE Email_negocio =:email";
-        List<Negocio> lista = entityManager.createQuery(query).setParameter("email", negocio.getEmail_negocio()).getResultList();
+        String query = "FROM Negocio WHERE Email =:email";
+        List<Negocio> lista = entityManager.createQuery(query, Negocio.class).setParameter("email", negocio.getEmail_negocio()).getResultList();
 
         if(lista.isEmpty()){
             return null;

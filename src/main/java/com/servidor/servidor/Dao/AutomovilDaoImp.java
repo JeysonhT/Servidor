@@ -19,7 +19,7 @@ public class AutomovilDaoImp implements AutomovilDao {
     @Override
     public List<Automovil> getAutos() {
         String query = "FROM Automovil";
-        return entityManager.createQuery(query).getResultList();
+        return entityManager.createQuery(query, Automovil.class).getResultList();
     }
 
     @Override

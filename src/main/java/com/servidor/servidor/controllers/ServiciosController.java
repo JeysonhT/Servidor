@@ -26,7 +26,7 @@ public class ServiciosController {
         return servicioDao.getServicios();
     }
 
-    @RequestMapping(value = "api/Servicios/{Id}", method = RequestMethod.DELETE)
+    @DeleteMapping("api/Servicios/{Id}")
     public ResponseEntity<String> EliminarServicios(@PathVariable int Id, @RequestHeader(value = "Authorization")String token){
         if(!validarToken(token)){
             return null;
@@ -36,12 +36,12 @@ public class ServiciosController {
     }
 
 
-    @RequestMapping(value = "api/Servicios", method = RequestMethod.POST)
-    public ResponseEntity<String>RegistrarServicio(@RequestParam String Nombre_serv, String Fecha, String Descripcion, Float costo, @RequestHeader(value = "Authorization")String token){
+    @PostMapping("api/Servicios")
+    public ResponseEntity<String>RegistrarServicio(@RequestParam String Fecha, @RequestHeader(value = "Authorization")String token){
         if(!validarToken(token)){
             return null;
         }
-        servicioDao.GuardarServicio(Nombre_serv, Fecha, Descripcion, costo);
+        servicioDao.GuardarServicio(Fecha);
         return ResponseEntity.ok("solicitud en proceso");
     }
 

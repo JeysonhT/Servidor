@@ -5,11 +5,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "Automovil")
+@Table(name = "Vehiculo")
 public class Automovil {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Getter @Setter @Column(name = "Id_Auto")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter @Setter @Column(name = "Id_vehiculo")
     private int Id_Auto;
 
     @Getter @Setter @Column(name = "Modelo")
@@ -19,10 +19,10 @@ public class Automovil {
     private String Marca;
 
     @Getter @Setter @Column(name = "Anio")
-    private String Anio;
+    private int Anio;
 
     @ManyToOne
-    @JoinColumn(name = "Id_User", referencedColumnName = "Id_User")
+    @JoinColumn(name = "Id_Usuario", referencedColumnName = "Id_Usuario")
     @Getter @Setter
     private Usuario usuario;
 

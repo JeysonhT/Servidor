@@ -16,4 +16,5 @@ public interface UserDao {
 
     Usuario verificarUsuario(Usuario usuario);
 
+    //Metodos del usuario
 }

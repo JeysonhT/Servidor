@@ -10,23 +10,23 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "Afiliados")
+@Table(name = "Negocio")
 public class Negocio {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Getter @Setter @Column(name = "Id_Negocio")
     private int Id_negocio;
     @Getter @Setter @Column(name = "Nombre_Negocio")
     private String Nombre_negocio;
     @Getter @Setter @Column(name = "Nombre_Propiet")
     private String Propietario;
-    @Getter @Setter @Column(name = "Num_cel_negoc")
+    @Getter @Setter @Column(name = "Telefono_negoc")
     private int Celular_ngc;
-    @Getter @Setter @Column(name = "Email_negocio")
+    @Getter @Setter @Column(name = "Email")
     private String Email_negocio;
-    @Getter @Setter @Column(name= "Ubicacion")
-    private String Ubicacion;
-    @Getter @Setter @Column(name = "Password")
+    @Getter @Setter @Column(name= "Direccion")
+    private String Direccion;
+    @Getter @Setter @Column(name = "Clave_acceso")
     private String Password;
 
     public Negocio() {

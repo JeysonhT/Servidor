@@ -9,7 +9,7 @@ public interface ServicioDao {
     List<Servicios> getServicios();
     void EliminarServicio(int Id);
 
-     ResponseEntity<String> GuardarServicio(String Nombre_serv, String Fecha, String Descripcion, Float costo);
+     ResponseEntity<String> GuardarServicio(String Fecha);
 
 
 }

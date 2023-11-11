@@ -19,7 +19,7 @@ public class NegocioController {
     @Autowired
     private JWTUtil jwtUtil;
 
-    @RequestMapping(value = "api/Negocio")
+    @GetMapping("api/Negocio")
     public List<Negocio> getNegocio(@RequestHeader(value = "Authorization") String token){
         if(!validarToken(token)){
             return null;
@@ -27,7 +27,7 @@ public class NegocioController {
         return negocioDao.getNegocios();
     }
 
-    @RequestMapping(value = "api/Negocio/{Id}", method = RequestMethod.DELETE)
+    @DeleteMapping("api/Negocio/{Id}")
     public ResponseEntity<String> EliminarNegocio(@PathVariable int Id, @RequestHeader(value = "Authorization" )String token){
         if(!validarToken(token)){
             return null;
@@ -36,7 +36,7 @@ public class NegocioController {
         return ResponseEntity.ok("Usuario eliminado correctamente");
     }
 
-    @RequestMapping(value = "api/Negocio", method = RequestMethod.POST)
+    @PostMapping("api/Negocio")
     public ResponseEntity<String> RegistrarNegocio(@RequestBody Negocio negocio){
         Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
         String hash = argon2.hash(1, 1024, 1, negocio.getPassword());

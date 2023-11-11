@@ -1,9 +1,7 @@
 package com.servidor.servidor.Dao;
 
 import com.servidor.servidor.Dao.Interfaces.ServicioDao;
-import com.servidor.servidor.Models.Negocio;
 import com.servidor.servidor.Models.Servicios;
-import com.servidor.servidor.Models.Usuario;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +19,7 @@ public class ServicioDaoImp implements ServicioDao {
     @Override
     public List<Servicios> getServicios() {
         String query = "FROM Servicios";
-        return entityManager.createQuery(query).getResultList();
+        return entityManager.createQuery(query, Servicios.class).getResultList();
     }
 
     @Override
@@ -31,8 +29,8 @@ public class ServicioDaoImp implements ServicioDao {
     }
 
     @Override
-    public ResponseEntity<String> GuardarServicio(String Nombre_serv, String Fecha, String Descripcion, Float costo) {
-        Servicios servicios = new Servicios(Nombre_serv, Fecha, Descripcion, costo);
+    public ResponseEntity<String> GuardarServicio(String Fecha) {
+        Servicios servicios = new Servicios(Fecha);
         entityManager.merge(servicios);
         return ResponseEntity.ok("Solicitud Ejecutada");
     }

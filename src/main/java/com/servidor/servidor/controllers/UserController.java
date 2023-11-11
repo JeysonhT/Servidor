@@ -20,7 +20,7 @@ public class UserController {
     @Autowired
     private JWTUtil jwtUtil;
 
-    @RequestMapping(value = "api/Usuarios")
+    @GetMapping("api/Usuarios")
     public List<Usuario> getUsuarios(@RequestHeader(value="Authorization") String token){
         if (!validarToken(token)) {
             return null;
@@ -33,7 +33,7 @@ public class UserController {
         return usuarioId != null;
     }
 
-    @RequestMapping(value = "api/Usuarios/{Id}", method = RequestMethod.DELETE)
+    @DeleteMapping("api/Usuarios/{Id}")
     public void DeleteUsuario(@RequestHeader(value="Authorization") String token,@PathVariable int Id){
 
         if (!validarToken(token)) {
@@ -43,12 +43,12 @@ public class UserController {
         userDao.Eliminar(Id);
     }
 
-    @RequestMapping(value = "api/Usuarios", method = RequestMethod.POST)
+    @PostMapping("api/Usuarios")
     public ResponseEntity<String> registrarUsuario(@RequestBody Usuario usuario){
         Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
-        String hash = argon2.hash(1, 1024, 1, usuario.getPassword());
+        String hash = argon2.hash(1, 1024, 1, usuario.getClave_acceso());
 
-        usuario.setPassword(hash);
+        usuario.setClave_acceso(hash);
 
         userDao.registrar(usuario);
         return ResponseEntity.ok("solicitud procesada Correctamente");

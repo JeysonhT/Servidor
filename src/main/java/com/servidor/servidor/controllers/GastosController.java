@@ -1,27 +1,30 @@
 package com.servidor.servidor.controllers;
 
-import com.servidor.servidor.Dao.Interfaces.GastosDao;
-import com.servidor.servidor.Models.Gastos;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.servidor.servidor.Dao.Interfaces.GastosDao;
+import com.servidor.servidor.Models.Gastos;
 
 @RestController
 public class GastosController {
-    @Autowired
-    private GastosDao gastosDao;
 
-    @RequestMapping(value = "api/Gastos")
-    public List<Gastos> getGastos(){
+    @Autowired
+    GastosDao gastosDao;
+
+    @PostMapping("api/Gastos")
+    public void registrarGastos(@RequestBody Gastos gastos){
+        gastosDao.registrarGasto(gastos);
+    }
+
+    @GetMapping("api/Gastos")
+    public List<Gastos> MostrarGastos(){
         return gastosDao.getGastos();
     }
-
-    @RequestMapping(value = "api/Gastos/{Id}", method = RequestMethod.DELETE)
-    public void EliminarGastos(@PathVariable int Id){
-        gastosDao.EliminarGastos(Id);
-    }
+    
 }

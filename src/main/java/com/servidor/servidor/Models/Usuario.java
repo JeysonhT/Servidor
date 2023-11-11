@@ -10,12 +10,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "Usuario_Vehi")
+@Table(name = "Usuario")
 public class Usuario {
     @Id
-    @GeneratedValue(strategy =GenerationType.AUTO)
-    @Getter @Setter @Column(name = "Id_User")
-    private int Id_User;
+    @GeneratedValue(strategy =GenerationType.IDENTITY)
+    @Getter @Setter @Column(name = "Id_Usuario")
+    private int Id_Usuario;
 
     @Getter @Setter @Column(name = "Nombre1")
     private String Nombre1;
@@ -27,10 +27,10 @@ public class Usuario {
     private String Apellido2;
     @Getter @Setter @Column(name = "Email")
     private String Email;
-    @Getter @Setter @Column(name = "Num_celular")
-    private int Num_celular;
-    @Getter @Setter @Column(name = "Password")
-    private String Password;
+    @Getter @Setter @Column(name = "Telefono")
+    private int Telefono;
+    @Getter @Setter @Column(name = "Clave_acceso")
+    private String Clave_acceso;
     
     public Usuario() {
     }
