@@ -1,15 +1,17 @@
 package com.servidor.servidor.Dao.Interfaces;
 
-import com.servidor.servidor.Models.Gastos;
-import org.springframework.http.ResponseEntity;
-
 import java.util.List;
 
+import com.servidor.servidor.Models.Gastos;
+
 public interface GastosDao {
+    
+    void registrarGasto(Gastos gasto);
+
+    void EliminarGasto(int Id);
+
     List<Gastos> getGastos();
 
-    void EliminarGastos(int Id);
-
-    ResponseEntity<String> registrarGastos(Gastos gastos);
+    float PromedioGastos();
 
 }

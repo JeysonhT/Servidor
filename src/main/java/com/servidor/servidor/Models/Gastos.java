@@ -8,20 +8,23 @@ import lombok.Setter;
 @Table(name = "Gastos")
 public class Gastos {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Getter @Setter @Column(name = "Id_Gastos")
-    private int Id_Gastos;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter @Setter @Column(name = "Id_Gasto")
+    private int Id_Gasto;
 
-    @Getter @Setter @Column(name = "Tipo_gasto")
-    private String Tipo_gasto;
+    @Getter @Setter @Column(name = "Descripcion")
+    private String Descripcion;
 
     @Getter @Setter @Column(name = "Monto")
     private float Monto;
 
+    @Getter @Setter @Column(name = "Fecha")
+    private String Fecha;
+
     @ManyToOne
-    @JoinColumn(name = "Id_Auto", referencedColumnName = "Id_Auto")
+    @JoinColumn(name = "Id_Vehiculo", referencedColumnName = "Id_Vehiculo")
     @Getter @Setter
-    private Automovil automovil;
+    private Vehiculo vehiculo;
 
     public Gastos() {
     }

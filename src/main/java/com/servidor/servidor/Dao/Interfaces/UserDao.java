@@ -12,8 +12,11 @@ public interface UserDao {
 
     void registrar(Usuario usuario);
 
-    int getId(int id);
+    Usuario getUserbyId(int Id);
 
-    Usuario verificarUsuario(Usuario usuario);
+    Usuario verificarUsuario(String email, String clave_acceso);
 
+    //Metodos del usuario
+
+    String EnviarWhatsapp(String telefono, String mensaje);
 }

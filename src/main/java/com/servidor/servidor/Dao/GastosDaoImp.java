@@ -1,35 +1,64 @@
 package com.servidor.servidor.Dao;
 
-import com.servidor.servidor.Dao.Interfaces.GastosDao;
-import com.servidor.servidor.Models.Gastos;
-import jakarta.persistence.EntityManager;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import com.servidor.servidor.Dao.Interfaces.GastosDao;
+import com.servidor.servidor.Models.Gastos;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 
 @Repository
 @Transactional
-public class GastosDaoImp implements GastosDao {
-    @Autowired
-    private EntityManager entityManager;
+public class GastosDaoImp implements GastosDao{
+
+    @PersistenceContext
+    EntityManager entityManager;
 
     @Override
+    public void registrarGasto(Gastos gasto) {
+        entityManager.merge(gasto);
+
+    }
+    
+    @Override
     public List<Gastos> getGastos() {
-        String query = "FROM Gastos";
-        return entityManager.createQuery(query).getResultList();
+       String query = "FROM Gastos";
+       return entityManager.createQuery(query, Gastos.class).getResultList();
     }
 
     @Override
-    public void EliminarGastos(int Id) {
+    public void EliminarGasto(int Id) {
         Gastos gastos = entityManager.find(Gastos.class, Id);
         entityManager.remove(gastos);
     }
 
     @Override
-    public ResponseEntity<String> registrarGastos(Gastos gastos) {
-        return null;
+    public float PromedioGastos() {
+        String query = "FROM Gastos";
+        List<Gastos> gastos = entityManager.createQuery(query, Gastos.class).getResultList();
+
+        return promedio(gastos);
     }
+
+    private float promedio (List<Gastos> lista){
+        float suma = 0;
+
+        for(Gastos gasto: lista){
+            suma+=gasto.getMonto();
+        }
+
+        int cantidad = lista.size();
+
+        if(cantidad > 0){
+            return suma/cantidad;
+        }else{
+            return 0;
+        }
+    }
+
+    
 }

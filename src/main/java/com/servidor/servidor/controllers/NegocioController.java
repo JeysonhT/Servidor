@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class NegocioController {
@@ -19,15 +20,15 @@ public class NegocioController {
     @Autowired
     private JWTUtil jwtUtil;
 
-    @RequestMapping(value = "api/Negocio")
-    public List<Negocio> getNegocio(@RequestHeader(value = "Authorization") String token){
-        if(!validarToken(token)){
+    @GetMapping("api/Negocio")
+    public List<Negocio> getNegocio(){
+        /*if(!validarToken(token)){
             return null;
-        }
+        }*/
         return negocioDao.getNegocios();
     }
 
-    @RequestMapping(value = "api/Negocio/{Id}", method = RequestMethod.DELETE)
+    @DeleteMapping("api/Negocio/{Id}")
     public ResponseEntity<String> EliminarNegocio(@PathVariable int Id, @RequestHeader(value = "Authorization" )String token){
         if(!validarToken(token)){
             return null;
@@ -36,15 +37,9 @@ public class NegocioController {
         return ResponseEntity.ok("Usuario eliminado correctamente");
     }
 
-    @RequestMapping(value = "api/Negocio", method = RequestMethod.POST)
-    public ResponseEntity<String> RegistrarNegocio(@RequestBody Negocio negocio){
-        Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
-        String hash = argon2.hash(1, 1024, 1, negocio.getPassword());
-
-        negocio.setPassword(hash);
-
-        negocioDao.registrar(negocio);
-        return ResponseEntity.ok("solicitud procesada Correctamente");
+    @PostMapping("api/Negocio")
+    public ResponseEntity<String> RegistrarNegocio(@RequestBody Map<String, Object> mapa){
+        return negocioDao.registrar(mapa);
     }
 
     private boolean validarToken(String token) {
