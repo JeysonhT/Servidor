@@ -1,6 +1,4 @@
 package com.servidor.servidor.Dao;
-
-import java.security.DrbgParameters.Reseed;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +35,17 @@ public class ProductoDaoImp implements ProductoDao{
     }
 
     @Override
-    public String updateProducto() {
-        
+    public String updateProducto(int Id, Producto producto) {
+        try{
+            String query = "UPDATE Producto SET Nombre = :nombre WHERE Id_producto = :id";
+            entityManager.createQuery(query, Producto.class).setParameter("nombre", producto.getNombre()).setParameter("id",
+                Id);
+            entityManager.getTransaction().commit();
+            return "Listo objeto actualizado";
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            return "El objeto no fue encontrado";
+        }
     }
 
     @Override

@@ -21,6 +21,7 @@ public class GastosDaoImp implements GastosDao{
     @Override
     public void registrarGasto(Gastos gasto) {
         entityManager.merge(gasto);
+
     }
     
     @Override

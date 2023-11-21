@@ -18,10 +18,13 @@ public class Gastos {
     @Getter @Setter @Column(name = "Monto")
     private float Monto;
 
+    @Getter @Setter @Column(name = "Fecha")
+    private String Fecha;
+
     @ManyToOne
-    @JoinColumn(name = "Id_vehiculo", referencedColumnName = "Id_vehiculo")
+    @JoinColumn(name = "Id_Vehiculo", referencedColumnName = "Id_Vehiculo")
     @Getter @Setter
-    private Automovil automovil;
+    private Vehiculo vehiculo;
 
     public Gastos() {
     }

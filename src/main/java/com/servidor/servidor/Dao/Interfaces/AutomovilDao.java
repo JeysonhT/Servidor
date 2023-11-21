@@ -1,14 +1,18 @@
 package com.servidor.servidor.Dao.Interfaces;
 
-import com.servidor.servidor.Models.Automovil;
+import com.servidor.servidor.Models.Vehiculo;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 public interface AutomovilDao {
-    List<Automovil> getAutos();
+    List<Vehiculo> getAutos();
+
+    List<Vehiculo> getAutosbyId(int id);
 
     void EliminarAutos(int Id);
 
-    ResponseEntity<String> resgistrarAutos(Automovil automovil);
+    Vehiculo getVehiculobyid(int Id);
+
+    ResponseEntity<String> resgistrarAutos(Vehiculo vehiculo);
 }

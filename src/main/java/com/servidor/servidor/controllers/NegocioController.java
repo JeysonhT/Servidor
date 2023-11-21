@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class NegocioController {
@@ -20,10 +21,10 @@ public class NegocioController {
     private JWTUtil jwtUtil;
 
     @GetMapping("api/Negocio")
-    public List<Negocio> getNegocio(@RequestHeader(value = "Authorization") String token){
-        if(!validarToken(token)){
+    public List<Negocio> getNegocio(){
+        /*if(!validarToken(token)){
             return null;
-        }
+        }*/
         return negocioDao.getNegocios();
     }
 
@@ -37,14 +38,8 @@ public class NegocioController {
     }
 
     @PostMapping("api/Negocio")
-    public ResponseEntity<String> RegistrarNegocio(@RequestBody Negocio negocio){
-        Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
-        String hash = argon2.hash(1, 1024, 1, negocio.getPassword());
-
-        negocio.setPassword(hash);
-
-        negocioDao.registrar(negocio);
-        return ResponseEntity.ok("solicitud procesada Correctamente");
+    public ResponseEntity<String> RegistrarNegocio(@RequestBody Map<String, Object> mapa){
+        return negocioDao.registrar(mapa);
     }
 
     private boolean validarToken(String token) {

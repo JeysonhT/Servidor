@@ -21,13 +21,13 @@ public class Negocio {
     @Getter @Setter @Column(name = "Nombre_Propiet")
     private String Propietario;
     @Getter @Setter @Column(name = "Telefono_negoc")
-    private int Celular_ngc;
+    private int Telefono_negoc;
     @Getter @Setter @Column(name = "Email")
-    private String Email_negocio;
+    private String Email;
     @Getter @Setter @Column(name= "Direccion")
     private String Direccion;
     @Getter @Setter @Column(name = "Clave_acceso")
-    private String Password;
+    private String Clave_acceso;
 
     public Negocio() {
     }

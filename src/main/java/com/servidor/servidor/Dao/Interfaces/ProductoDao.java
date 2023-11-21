@@ -11,7 +11,7 @@ public interface ProductoDao {
 
     ResponseEntity<String> deleteProducto(int Id);
 
-    String updateProducto(int Id, Producto Producto);
+    String updateProducto(int Id, Producto producto);
 
     ResponseEntity<String> postProducto(Producto producto);
 
