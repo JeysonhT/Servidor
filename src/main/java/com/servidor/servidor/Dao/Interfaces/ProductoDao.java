@@ -1,6 +1,7 @@
 package com.servidor.servidor.Dao.Interfaces;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 
@@ -13,7 +14,7 @@ public interface ProductoDao {
 
     String updateProducto(int Id, Producto producto);
 
-    ResponseEntity<String> postProducto(Producto producto);
+    ResponseEntity<String> postProducto(Map<String, Object> producto);
 
     Producto getProductobyId(int Id);
 

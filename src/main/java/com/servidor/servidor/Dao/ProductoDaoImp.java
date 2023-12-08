@@ -1,11 +1,16 @@
 package com.servidor.servidor.Dao;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
+import com.mysql.cj.util.DnsSrv.SrvRecord;
+import com.servidor.servidor.Dao.Interfaces.NegocioDao;
 import com.servidor.servidor.Dao.Interfaces.ProductoDao;
+import com.servidor.servidor.Models.Afiliados;
+import com.servidor.servidor.Models.Negocio;
 import com.servidor.servidor.Models.Producto;
 
 import jakarta.persistence.EntityManager;
@@ -16,6 +21,9 @@ public class ProductoDaoImp implements ProductoDao{
 
     @Autowired
     EntityManager entityManager;
+
+    @Autowired
+    NegocioDao negocioDao;
 
     @Override
     public List<Producto> getProductosforUser() {
@@ -49,7 +57,23 @@ public class ProductoDaoImp implements ProductoDao{
     }
 
     @Override
-    public ResponseEntity<String> postProducto(Producto producto) {
+    public ResponseEntity<String> postProducto(Map<String, Object> producto) {
+
+        Afiliados afiliado = negocioDao.getNegociobyId((int) producto.get("id_afiliado"));
+
+        Producto product = new Producto();
+
+        product.setAfiliados(afiliado);
+        product.setAnio_fabricacion((int)producto.get("anio_fabricacion"));
+        product.setCantidad_stock((int) producto.get("cantidad_stock"));
+        product.setCategoria((String) producto.get("categoria"));
+        product.setCosto((float) producto.get("costo"));
+        product.setMarca((String) producto.get("marca"));
+        product.setModelo_auto((String) producto.get("modelo_auto"));
+        product.setNombre((String) producto.get("nombre"));
+        product.setNumero_parte((String) producto.get("numero_parte"));
+        
+        
         try{
             entityManager.merge(producto);
             return ResponseEntity.ok("El producto fue registrado correctamente");
