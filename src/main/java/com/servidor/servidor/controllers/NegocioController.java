@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 public class NegocioController {
@@ -38,7 +39,7 @@ public class NegocioController {
     }
 
     @PostMapping("api/Negocio")
-    public ResponseEntity<String> RegistrarNegocio(@RequestBody Map<String, Object> mapa){
+    public String RegistrarNegocio(@RequestBody Map<String, Object> mapa){
         return negocioDao.registrar(mapa);
     }
 
